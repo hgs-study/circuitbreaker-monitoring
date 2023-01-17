@@ -2,7 +2,7 @@ package pir.demo.circuitbreakermonitoring.product.ui;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pir.demo.circuitbreakermonitoring.product.application.ProductService;
+import pir.demo.circuitbreakermonitoring.product.application.ProductServiceRouter;
 import pir.demo.circuitbreakermonitoring.product.domain.Product;
 
 import java.util.List;
@@ -10,14 +10,14 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceRouter productServiceRouter;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public ProductController(ProductServiceRouter productServiceRouter) {
+        this.productServiceRouter = productServiceRouter;
     }
 
     @GetMapping("/products")
     public List<Product> products(){
-        return productService.findAll();
+        return productServiceRouter.findAll();
     }
 }
