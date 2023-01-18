@@ -20,4 +20,9 @@ public class ProductController {
     public List<Product> products(){
         return productServiceRouter.findAll();
     }
+
+    @GetMapping("/product")
+    public Product product(){
+        return productServiceRouter.findOne();
+    }
 }

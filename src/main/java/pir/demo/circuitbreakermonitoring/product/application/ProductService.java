@@ -15,6 +15,10 @@ public class ProductService {
     }
 
     public List<Product> findAll(){
-        return productRepository.findAll();
+        return productRepository.findAllByHalfPercent();
+    }
+
+    public Product findOne(){
+        return productRepository.findOneByHalfPercent();
     }
 }

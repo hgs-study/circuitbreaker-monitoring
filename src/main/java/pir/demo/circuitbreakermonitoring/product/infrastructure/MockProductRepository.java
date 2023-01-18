@@ -12,14 +12,23 @@ import java.util.List;
 public class MockProductRepository implements ProductRepository {
 
     @Override
-    public List<Product> findAll() {
+    public List<Product> findAllByHalfPercent() {
         if(PercentageCreator.half()){
-            throw new ProductFindAllException("장애 발생");
+            throw new ProductFindAllException("[외부 통신 장애 발생 - findAll]");
         }
 
         return List.of(
                 new Product(1L, "product_01"),
                 new Product(2L, "product_02")
         );
+    }
+
+    @Override
+    public Product findOneByHalfPercent() {
+        if(PercentageCreator.half()){
+            throw new ProductFindAllException("[외부 통신 장애 발생 - findOne]");
+        }
+
+        return new Product(1L, "product_01");
     }
 }
