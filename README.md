@@ -8,11 +8,14 @@
 - Grafana
 - Notifier (Slack 등)
 
+## 시작
+- docker-compose로 프로메테우스, 그라파나 실행
+```
+  $ docker-compose up
+```
+
 
 ## 그라파나 템플릿
-
-
-
 
 ### resilience4j (서킷)
 - https://github.com/resilience4j/resilience4j/blob/master/grafana_dashboard.json
