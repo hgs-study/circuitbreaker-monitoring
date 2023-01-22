@@ -9,7 +9,7 @@
 - Notifier (Slack 등)
 
 ## 시작
-- docker-compose로 프로메테우스, 그라파나 실행
+- docker-compose로 Prometheus, Grafana 실행
 ```
   $ docker-compose up
 ```
