@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.4'
+나    id 'org.springframework.boot' version '2.4.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'pir.demo'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '19'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
@@ -16,8 +16,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.0'
-
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.1'
+    implementation 'io.github.resilience4j:resilience4j-all:1.7.1' // Optional, only required when you want to use the Decorators class
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
