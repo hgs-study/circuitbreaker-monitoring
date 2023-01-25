@@ -14,6 +14,15 @@
   $ docker-compose up
 ```
 
+## 플로우
+1. 서킷브레이커 오픈 시
+2. Spring Actuator로 상태 확인
+3. 슬랙 알림
+4. 그라파나 모니터링 확인
+
+![무제-페이지-2 drawio](https://user-images.githubusercontent.com/76584547/214617305-7c5231c2-2a35-4ac8-abe5-9608d2409cad.png)
+
+
 
 ## 그라파나 템플릿
 
