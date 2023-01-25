@@ -2,6 +2,7 @@ package pir.demo.circuitbreakermonitoring.product.infrastructure;
 
 import org.springframework.stereotype.Repository;
 import pir.demo.circuitbreakermonitoring.common.exception.ProductFindAllException;
+import pir.demo.circuitbreakermonitoring.common.exception.ProductFindOneException;
 import pir.demo.circuitbreakermonitoring.common.util.PercentageCreator;
 import pir.demo.circuitbreakermonitoring.product.domain.Product;
 import pir.demo.circuitbreakermonitoring.product.domain.ProductRepository;
@@ -26,7 +27,7 @@ public class MockProductRepository implements ProductRepository {
     @Override
     public Product findOneByHalfPercent() {
         if(PercentageCreator.half()){
-            throw new ProductFindAllException("[외부 통신 장애 발생 - findOne]");
+            throw new ProductFindOneException("[외부 통신 장애 발생 - findOne]");
         }
 
         return new Product(1L, "product_01");

@@ -3,7 +3,7 @@ package pir.demo.circuitbreakermonitoring.product.application;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.stereotype.Component;
 import pir.demo.circuitbreakermonitoring.common.exception.ProductFindAllException;
-import pir.demo.circuitbreakermonitoring.common.nofity.CircuitBreakerNotifier;
+import pir.demo.circuitbreakermonitoring.common.exception.ProductFindOneException;
 import pir.demo.circuitbreakermonitoring.product.circuitbreaker.ProductCircuitBreakerFallBackProperty;
 import pir.demo.circuitbreakermonitoring.product.circuitbreaker.ProductCircuitBreakerProperty;
 import pir.demo.circuitbreakermonitoring.product.domain.Product;
@@ -15,11 +15,11 @@ import java.util.List;
 public class ProductServiceRouter {
 
     private final ProductService productService;
-    private final CircuitBreakerNotifier circuitBreakerNotifier;
+    private final ProductFallbackService productFallbackService;
 
-    public ProductServiceRouter(ProductService productService, CircuitBreakerNotifier circuitBreakerNotifier) {
+    public ProductServiceRouter(ProductService productService, ProductFallbackService productFallbackService) {
         this.productService = productService;
-        this.circuitBreakerNotifier = circuitBreakerNotifier;
+        this.productFallbackService = productFallbackService;
     }
 
     @CircuitBreaker(
@@ -30,12 +30,8 @@ public class ProductServiceRouter {
         return productService.findAll();
     }
 
-    private List<Product> productFindAllFallBack(ProductFindAllException exception){
-        circuitBreakerNotifier.opened(ProductCircuitBreakerProperty.FIND_ALL, exception);
-        return List.of(
-                new Product(3L, "fallback - mock product_03"),
-                new Product(4L, "fallback - mock product_04")
-        );
+    public List<Product> productFindAllFallBack(ProductFindAllException exception){
+        return productFallbackService.findAll();
     }
 
     @CircuitBreaker(
@@ -46,8 +42,7 @@ public class ProductServiceRouter {
         return productService.findOne();
     }
 
-    private Product productFindOneFallBack(Exception exception){
-        circuitBreakerNotifier.opened(ProductCircuitBreakerProperty.FIND_ONE, exception);
-        return new Product(5L, "fallback - mock product_04");
+    public Product productFindOneFallBack(Exception exception){
+        return productFallbackService.findOne();
     }
 }

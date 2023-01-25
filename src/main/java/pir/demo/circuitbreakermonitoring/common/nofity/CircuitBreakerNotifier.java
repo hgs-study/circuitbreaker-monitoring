@@ -2,9 +2,10 @@ package pir.demo.circuitbreakermonitoring.common.nofity;
 
 public interface CircuitBreakerNotifier {
 
-    void opened(String circuitBreakerName, Exception exception);
+    void closedToOpen(String circuitBreakerName);
 
-    void closed(String circuitBreakerName, Exception exception);
+    void openedToHalfOpen(String circuitBreakerName);
 
-    void halfOpened(String circuitBreakerName, Exception exception);
+    void halfOpenedToClose(String circuitBreakerName);
+    void halfOpenedToOpen(String circuitBreakerName);
 }

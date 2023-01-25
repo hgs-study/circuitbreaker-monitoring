@@ -1,1 +1,27 @@
+spring:
+  application:
+    name: circuitbreaker-monitoring-application
 
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator : true
+    metrics:
+      legacy:
+        enabled: true
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
